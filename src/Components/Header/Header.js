@@ -3,25 +3,37 @@ import DisplayCard from '../DisplayCard/DisplayCard';
 
 const Header = () => {
     const [item, setItem] = useState([]);
+    const [person, setPerson] = useState([]);
     useEffect(() => {
         fetch('./data.JSON')
             .then(res => res.json())
             .then(data => setItem(data));
-    }, [])
+    }, []);
+    const eventHandler = (item) => {
+        const total = [...person, item];
+        setPerson(total);
+    }
+
+    let totalPrice = 0;
+    for (let i = 0; i < person.length; i++) {
+        const item = person[i];
+        totalPrice = totalPrice + item.salary;
+    }
+
     return (
         <div>
-            <header className='text-center shadow py-3 sticky-top' style={{backgroundColor: '#ffffffe6', backdropFilter: 'blur(10px)'}}>
+            <header className='text-center shadow py-2 sticky-top' style={{backgroundColor: '#ffffffe6', backdropFilter: 'blur(10px)'}}>
                 <h1>Best Game Of Thrones Characters, Ranked</h1>
                 <div>
-                    <h5>Total Added cards: </h5>
-                    <h5>Total Salary: </h5>
+                    <h5>Total Added cards: {person.length}</h5>
+                    <h5>Total Salary: $ {totalPrice}</h5>
                 </div>
             </header>
 
             <div className='container '>
                 <div className="row">
                     {
-                        item.map(data => <DisplayCard key={data.id} data={data}></DisplayCard>)
+                        item.map(data => <DisplayCard key={data.id} data={data} eventHandler={eventHandler}></DisplayCard>)
                     }
                 </div>
             </div>
