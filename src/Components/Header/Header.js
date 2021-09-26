@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DisplayCard from '../DisplayCard/DisplayCard';
+import Names from '../Names/Names';
 
 const Header = () => {
     const [item, setItem] = useState([]);
@@ -28,6 +29,9 @@ const Header = () => {
                 <div>
                     <h5>Total Added cards: {person.length}</h5>
                     <h5>Total Salary: $ {totalPrice}</h5>
+                    {
+                        person.map( name => <Names key={name.rank} names={name}></Names>)
+                    }
                 </div>
             </header>
 
