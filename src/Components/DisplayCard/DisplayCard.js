@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 
 const DisplayCard = (props) => {
     const {eventHandler} = props;
+    //destructuring
     const { rank, name, age, gender, image, salary } = props.data;
     return (
         <div className='col-md-3 my-4'>

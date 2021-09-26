@@ -4,6 +4,7 @@ import DisplayCard from '../DisplayCard/DisplayCard';
 const Header = () => {
     const [item, setItem] = useState([]);
     const [person, setPerson] = useState([]);
+    //loading data
     useEffect(() => {
         fetch('./data.JSON')
             .then(res => res.json())
@@ -13,7 +14,7 @@ const Header = () => {
         const total = [...person, item];
         setPerson(total);
     }
-
+    //calculating total salary
     let totalPrice = 0;
     for (let i = 0; i < person.length; i++) {
         const item = person[i];
